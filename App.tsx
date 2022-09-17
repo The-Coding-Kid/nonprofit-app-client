@@ -44,7 +44,11 @@ const TabNav = () => {
       {/* <Tab.Group screenOptions={{ presentation: "modal" }}>
           <RootStack.Screen name="MyModal" component={ModalScreen} />
         </Tab.Group> */}
-      <Tab.Screen name="Create" component={Create} />
+      <Tab.Screen
+        name="Create"
+        component={Create}
+        options={{ headerShown: false }}
+      />
     </Tab.Navigator>
   );
 };
