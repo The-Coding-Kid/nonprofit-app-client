@@ -68,7 +68,6 @@ function Home({ navigation }) {
                   longitude: item.longitude,
                 }}
                 onPress={() => {
-                  console.log(item);
                   navigation.navigate("PlaceModal", { item: item });
                 }}
               >

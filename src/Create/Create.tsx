@@ -34,12 +34,8 @@ const Create = ({ navigation }) => {
         phone: phone,
         email: email,
       })
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+      .then((res) => {})
+      .catch((err) => {});
   };
 
   return (
