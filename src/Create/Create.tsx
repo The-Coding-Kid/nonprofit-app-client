@@ -11,8 +11,9 @@ import {
 import React, { useState } from "react";
 import { Keyboard } from "react-native";
 import axios from "axios";
-import { TextInput, Title } from "react-native-paper";
+import { TextInput, Title, Provider } from "react-native-paper";
 import { Ionicons } from "@expo/vector-icons";
+import DropDown from "react-native-paper-dropdown";
 
 const Create = ({ navigation }) => {
   const [name, setName] = useState<string>("");
@@ -22,6 +23,14 @@ const Create = ({ navigation }) => {
   const [website, setWebsite] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
   const [email, setEmail] = useState<string>("");
+  const [type, setType] = useState<string>("");
+  const [showDropDown, setShowDropDown] = useState(false);
+
+  const typeList = [
+    { label: "Food Bank", value: "bank" },
+    { label: "Homeless Shelter", value: "night-shelter" },
+    { label: "Temple", value: "mosque" },
+  ];
 
   const handleSubmit = () => {
     axios

@@ -5,7 +5,7 @@ import { Marker } from "react-native-maps";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import * as Location from "expo-location";
 import axios from "axios";
-import { MaterialIcons } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 
 function Home({ navigation }) {
   const [location, setLocation] = useState<any>(null);
@@ -21,11 +21,7 @@ function Home({ navigation }) {
         return;
       }
 
-      let location1 = await Location.getCurrentPositionAsync({});
-      setTimeout(() => {
-        setLocation(location1);
-      }, 5000);
-      axios
+      await axios
         .get("https://nonprofit-ap.herokuapp.com/places/")
         .then(async (res) => {
           setData(await res.data);
@@ -33,6 +29,10 @@ function Home({ navigation }) {
         .catch((err) => {
           console.error(err);
         });
+      let location1 = await Location.getCurrentPositionAsync({});
+      setTimeout(() => {
+        setLocation(location1);
+      }, 3000);
     })();
   }, []);
 
@@ -71,7 +71,7 @@ function Home({ navigation }) {
                   navigation.navigate("PlaceModal", { item: item });
                 }}
               >
-                <MaterialIcons name="night-shelter" size={30} color="#0096FF" />
+                <FontAwesome5 name={item.type} size={25} color="#0096FF" />
               </Marker>
             );
           })}

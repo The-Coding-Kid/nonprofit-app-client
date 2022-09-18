@@ -8,6 +8,7 @@ import Create from "./src/Create/Create";
 import { Entypo } from "@expo/vector-icons";
 import PlaceModal from "./src/Home/PlaceModal";
 import AdminLogin from "./src/Create/AdminLogin";
+import { MaterialIcons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 const RootStack = createNativeStackNavigator();
@@ -42,14 +43,14 @@ const TabNav = () => {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           if (route.name === "Near Me") {
-            iconName = "location-pin";
+            iconName = "near-me";
             color = focused ? "#0079fd" : "#7a7a7a";
           } else if (route.name === "Create") {
-            iconName = "plus";
+            iconName = "add-location-alt";
             color = focused ? "#0079fd" : "#7a7a7a";
           }
           //@ts-ignore
-          return <Entypo name={iconName} size={22} color={color} />;
+          return <MaterialIcons name={iconName} size={22} color={color} />;
         },
       })}
     >
