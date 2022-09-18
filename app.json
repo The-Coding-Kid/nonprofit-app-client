@@ -9,15 +9,13 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#7895b8"
     },
     "updates": {
       "fallbackToCacheTimeout": 0,
       "url": "https://u.expo.dev/16508e08-9835-4246-aa49-9a7b15f95d22"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -38,8 +36,6 @@
     "runtimeVersion": {
       "policy": "sdkVersion"
     },
-    "plugins": [
-      "sentry-expo"
-    ]
+    "plugins": ["sentry-expo"]
   }
 }
