@@ -22,7 +22,7 @@ const AdminLogin = ({ navigation }) => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        navigate("HomeTab");
+        navigation.navigate("CreateScreen");
       }
     });
 
