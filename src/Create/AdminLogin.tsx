@@ -13,11 +13,13 @@ import {
 import React, { useState, useEffect } from "react";
 import { Subheading, Title } from "react-native-paper";
 import { TextInput } from "react-native-paper";
-import { auth } from "../../firebase_init";
+import { auth } from "../../firebase_init.js";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const AdminLogin = ({ navigation }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -28,6 +30,17 @@ const AdminLogin = ({ navigation }) => {
 
     return unsubscribe;
   }, []);
+
+  const handleLogin = () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then(async (userCredentials) => {
+        navigation.navigate("CreateScreen");
+      })
+      .catch((error) => {
+        console.error(error);
+        setError("Email or Password is incorrect");
+      });
+  };
 
   return (
     <KeyboardAvoidingView
@@ -77,18 +90,17 @@ const AdminLogin = ({ navigation }) => {
             autoCapitalize="none"
             autoCorrect={false}
             secureTextEntry={true}
-            textContentType="password"
           />
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.navigate("CreateScreen")}
-          >
+          <TouchableOpacity style={styles.button} onPress={() => handleLogin()}>
             <Subheading
               style={{ color: "white", fontWeight: "bold", fontSize: 20 }}
             >
               OK
             </Subheading>
           </TouchableOpacity>
+          {error ? (
+            <Text style={{ color: "red", marginTop: 20 }}>{error}</Text>
+          ) : null}
         </View>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
