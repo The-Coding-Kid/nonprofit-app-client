@@ -70,7 +70,6 @@ const Create = ({ navigation }) => {
             }}
             value={name}
             onChangeText={setName}
-            keyboardType="email-address"
             label={"Name"}
             autoCapitalize="none"
             autoCorrect={false}
