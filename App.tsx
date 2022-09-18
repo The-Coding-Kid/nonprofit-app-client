@@ -7,9 +7,28 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Create from "./src/Create/Create";
 import { Entypo } from "@expo/vector-icons";
 import PlaceModal from "./src/Home/PlaceModal";
+import AdminLogin from "./src/Create/AdminLogin";
 
 const Tab = createBottomTabNavigator();
 const RootStack = createNativeStackNavigator();
+const AdminStack = createNativeStackNavigator();
+
+const AdminStackScreen = () => {
+  return (
+    <AdminStack.Navigator>
+      <AdminStack.Screen
+        name="Admin Login"
+        component={AdminLogin}
+        options={{ headerShown: false }}
+      />
+      <AdminStack.Screen
+        name="CreateScreen"
+        component={Create}
+        options={{ headerShown: false }}
+      />
+    </AdminStack.Navigator>
+  );
+};
 
 const TabNav = () => {
   return (
@@ -46,7 +65,7 @@ const TabNav = () => {
         </Tab.Group> */}
       <Tab.Screen
         name="Create"
-        component={Create}
+        component={AdminStackScreen}
         options={{ headerShown: false }}
       />
     </Tab.Navigator>
