@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "nonprofit-finder",
-    "slug": "nonprofit-finder",
+    "name": "helping-hands",
+    "slug": "helping-hands",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
