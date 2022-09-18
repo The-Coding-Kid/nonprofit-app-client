@@ -84,8 +84,9 @@ const Create = ({ navigation }) => {
               marginTop: 20,
               width: 300,
               alignSelf: "center",
-              height: 45,
+              minHeight: 35,
             }}
+            multiline
           />
           <TextInput
             value={email}
