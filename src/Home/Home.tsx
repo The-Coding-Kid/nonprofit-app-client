@@ -5,7 +5,6 @@ import { Marker } from "react-native-maps";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import * as Location from "expo-location";
 import axios from "axios";
-import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 
 function Home({ navigation }) {
@@ -22,28 +21,24 @@ function Home({ navigation }) {
         return;
       }
 
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
+      let location1 = await Location.getCurrentPositionAsync({});
+      setTimeout(() => {
+        setLocation(location1);
+      }, 5000);
+      axios
+        .get("https://nonprofit-ap.herokuapp.com/places/")
+        .then(async (res) => {
+          setData(await res.data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     })();
   }, []);
 
   useEffect(() => {
     setMap(true);
   }, [location]);
-
-  useEffect(() => {
-    axios
-      .get("https://nonprofit-ap.herokuapp.com/places/")
-      .then(async (res) => {
-        setData(res.data);
-        console.log("lat: " + location.coords.latitude);
-        console.log("lng: " + location.coords.longitude);
-        // console.log(location.coords.latitude, location.coords.longitude);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, [map, location]);
 
   let text = "Waiting..";
   if (errorMsg) {
@@ -53,7 +48,7 @@ function Home({ navigation }) {
   }
   return (
     <View style={styles.container}>
-      {map && location && data ? (
+      {location ? (
         <MapView
           style={styles.map}
           showsUserLocation={true}
