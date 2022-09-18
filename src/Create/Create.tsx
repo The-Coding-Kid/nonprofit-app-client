@@ -43,7 +43,9 @@ const Create = ({ navigation }) => {
         phone: phone,
         email: email,
       })
-      .then((res) => {})
+      .then((res) => {
+        navigation.navigate("Near Me");
+      })
       .catch((err) => {});
   };
 
@@ -99,6 +101,7 @@ const Create = ({ navigation }) => {
               alignSelf: "center",
               height: 45,
             }}
+            autoCapitalize="none"
           />
           <TextInput
             value={website}
@@ -114,7 +117,6 @@ const Create = ({ navigation }) => {
             }}
           />
           <TextInput
-            keyboardType="numeric"
             value={latitude}
             onChangeText={(text) => {
               setLatitude(text);
@@ -128,7 +130,6 @@ const Create = ({ navigation }) => {
             }}
           />
           <TextInput
-            keyboardType="numeric"
             value={longitude}
             onChangeText={(text) => {
               setLongitude(text);

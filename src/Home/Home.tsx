@@ -2,16 +2,27 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import MapView, { Callout } from "react-native-maps";
 import { Marker } from "react-native-maps";
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  TouchableWithoutFeedback,
+} from "react-native";
 import * as Location from "expo-location";
 import axios from "axios";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { Searchbar } from "react-native-paper";
+import { Keyboard } from "react-native";
 
 function Home({ navigation }) {
   const [location, setLocation] = useState<any>(null);
   const [errorMsg, setErrorMsg] = useState<any>(null);
   const [map, setMap] = useState<boolean>(false);
   const [data, setData] = useState<any | null>(null);
+  const [searchQuery, setSearchQuery] = React.useState("");
+
+  const onChangeSearch = (query: any) => setSearchQuery(query);
 
   useEffect(() => {
     (async () => {
@@ -49,33 +60,51 @@ function Home({ navigation }) {
   return (
     <View style={styles.container}>
       {location ? (
-        <MapView
-          style={styles.map}
-          showsUserLocation={true}
-          initialRegion={{
-            latitude: location.coords.latitude,
-            longitude: location.coords.longitude,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
+        <TouchableWithoutFeedback
+          onPress={() => {
+            Keyboard.dismiss();
           }}
         >
-          {data.map((item: any) => {
-            return (
-              <Marker
-                key={item._id}
-                coordinate={{
-                  latitude: item.latitude,
-                  longitude: item.longitude,
-                }}
-                onPress={() => {
-                  navigation.navigate("PlaceModal", { item: item });
-                }}
-              >
-                <FontAwesome5 name={item.type} size={25} color="#0096FF" />
-              </Marker>
-            );
-          })}
-        </MapView>
+          <MapView
+            style={styles.map}
+            showsUserLocation={true}
+            initialRegion={{
+              latitude: location.coords.latitude,
+              longitude: location.coords.longitude,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
+            }}
+          >
+            <Searchbar
+              placeholder="Search"
+              onChangeText={onChangeSearch}
+              value={searchQuery}
+              style={{
+                zIndex: 1,
+                marginTop: "25%",
+                width: "90%",
+                borderRadius: 15,
+                alignSelf: "center",
+              }}
+            />
+            {data.map((item: any) => {
+              return (
+                <Marker
+                  key={item._id}
+                  coordinate={{
+                    latitude: item.latitude,
+                    longitude: item.longitude,
+                  }}
+                  onPress={() => {
+                    navigation.navigate("PlaceModal", { item: item });
+                  }}
+                >
+                  <FontAwesome5 name={item.type} size={25} color="#0096FF" />
+                </Marker>
+              );
+            })}
+          </MapView>
+        </TouchableWithoutFeedback>
       ) : (
         <Text>Loading map</Text>
       )}
