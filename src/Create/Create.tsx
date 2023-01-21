@@ -34,7 +34,7 @@ const Create = ({ navigation }) => {
 
   const handleSubmit = () => {
     axios
-      .post("https://nonprofit-ap.herokuapp.com/places/create", {
+      .post("https://0612-98-37-209-152.ngrok.io/places/create", {
         name: name,
         description: description,
         latitude: latitude,

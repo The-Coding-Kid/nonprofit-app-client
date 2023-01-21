@@ -15,6 +15,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { Searchbar } from "react-native-paper";
 import { Keyboard } from "react-native";
 
+//@ts-ignore
 function Home({ navigation }) {
   const [location, setLocation] = useState<any>(null);
   const [errorMsg, setErrorMsg] = useState<any>(null);
@@ -33,7 +34,7 @@ function Home({ navigation }) {
       }
 
       await axios
-        .get("https://nonprofit-ap.herokuapp.com/places/")
+        .get("https://0612-98-37-209-152.ngrok.io/places/")
         .then(async (res) => {
           setData(await res.data);
         })
