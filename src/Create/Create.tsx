@@ -15,6 +15,7 @@ import { TextInput, Title, Provider } from "react-native-paper";
 import { Ionicons } from "@expo/vector-icons";
 import DropDown from "react-native-paper-dropdown";
 
+// @ts-ignore
 const Create = ({ navigation }) => {
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");

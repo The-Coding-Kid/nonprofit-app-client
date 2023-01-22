@@ -14,6 +14,9 @@ import axios from "axios";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Searchbar } from "react-native-paper";
 import { Keyboard } from "react-native";
+import { FloatingAction } from "react-native-floating-action";
+import { AnimatedFAB } from 'react-native-paper';
+
 
 //@ts-ignore
 function Home({ navigation }) {
@@ -76,7 +79,7 @@ function Home({ navigation }) {
               longitudeDelta: 0.0421,
             }}
           >
-            <Searchbar
+            {/* <Searchbar
               placeholder="Search"
               onChangeText={onChangeSearch}
               value={searchQuery}
@@ -87,7 +90,7 @@ function Home({ navigation }) {
                 borderRadius: 15,
                 alignSelf: "center",
               }}
-            />
+            /> */}
             {data.map((item: any) => {
               return (
                 <Marker
